@@ -3,16 +3,29 @@ package enderecos
 
 import "testing"
 
+type cenarioTeste struct {
+	enderecoInserido string
+	retornoEsperado string
+}
+
 func TestTipoEndereco(t *testing.T) {
-	// tem que ser exatamente como está. Com a primeira e a segunda letra LOWER
-	enderecoParaTeste := "Rua ABC"
+	
+	cenariosTestes := []cenarioTeste {
+		{"Rua ABC", "Rua"},
+		{"Avenida Paulista", "Avenida"},
+		{"Rodovia dos Imigrantes", "Rodovia"},
+		{"Estrada do cabucu", "Estrada"},
+		{"Praça das Rosas", "Tipo inválido"},
+		{" ", "Tipo inválido"},
+		{"AVENIDA PREBOUÇA", "Avenida"},
+	}
 
-	tipoEnderecoEsperado := "Avenida"
-
-	tipoEnderecoRecebido := TipoEndereco(enderecoParaTeste)
-
-	if tipoEnderecoRecebido != tipoEnderecoEsperado {
-		t.Errorf("O Tipo recebido é diferente do esperado. Esperava %s e recebeu %s", tipoEnderecoEsperado, tipoEnderecoRecebido)
+	for _, cenario := range cenariosTestes {
+		retornoRecebido := TipoEndereco(cenario.enderecoInserido) 
+			if retornoRecebido != cenario.retornoEsperado {
+				t.Errorf("O Tipo recebido %s é diferente do esperado %s", retornoRecebido, cenario.retornoEsperado)
+			}
+		
 	}
 
 }

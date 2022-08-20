@@ -1,9 +1,8 @@
 package main
 
 import (
-		"introducao-testes/enderecos"
 		"fmt"
-
+		"introducao-testes/enderecos"
 )
 
 
