@@ -17,9 +17,16 @@ func main() {
 	// URI - Identificador de Recurso
 	// Método - GET, POST, PUT, DELETE
 
-	http.HandleFunc("/home", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Estou no ar"))
+	http.HandleFunc("/home", home)
+
+	http.HandleFunc("/user", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Campo de usuários"))
 	})
 
 	log.Fatal(http.ListenAndServe(":5000", nil))
+}
+// duas formas de presentar a função
+
+func home (w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Campo principal"))
 }
