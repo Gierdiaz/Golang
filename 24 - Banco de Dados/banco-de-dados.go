@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	stringConexao := "usuario:senha@/banco"
+	stringConexao := "golang:golang@/devbook?charset=utf8"
 
 	db, err := sql.Open("mysql", stringConexao)
 
