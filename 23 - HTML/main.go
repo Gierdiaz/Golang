@@ -14,6 +14,7 @@ type Usuario struct {
 	Email string
 }
 
+
 func main () {
 
 	fmt.Println("Escutando na porta 5000")
@@ -33,4 +34,4 @@ func home (w http.ResponseWriter, r *http.Request) {
 
 	templates.ExecuteTemplate(w, "home.html", user)
 
-}	
+}

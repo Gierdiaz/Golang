@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyper Text Markup Language</title>
+    
 </head>
 <body>
     <h2>
@@ -18,6 +19,19 @@
     <p>
         {{ .Nome }}
     </p>
+
+
+    <button id="bt">Clique em mim</button>
+
+
+    <script>
+        var bt = document.getElementById("bt");
+        bt.onclick = function() {
+            alert("botão clicado com sucesso!");
+        }
+    </script>
+
+
 </body>
 </html>
 
