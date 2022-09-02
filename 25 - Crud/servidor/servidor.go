@@ -75,3 +75,51 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 
 
 }
+
+// BuscarUsuarios traz todos os usuários salvos no banco
+func BuscarUsuarios (w http.ResponseWriter, r *http.Response) {
+	db, err := banco.Conectar() 
+
+	if err != nil {
+		w.Write([]byte("Erro ao conectar o banco de dados"))
+	}
+
+	defer db.Close()
+
+	// SELECT * FROM USUARIOS
+
+	linhas, err := db.Query("select * from usuarios")
+
+	if err != nil {
+		w.Write([]byte("Erro ao buscar usuários"))
+	}
+
+	defer linhas.Close()
+
+	var usuarios []usuario
+
+	for linhas.Next() {
+		var usuario usuario
+
+		if err := linhas.Scan(&usuario.ID, &usuario.Nome, &usuario.Email); err != nil {
+			w.Write([]byte("Erro ao escanear o usuário"))
+
+			return
+		}
+
+		usuarios = append(usuarios, usuario)
+	}
+
+	w.WriteHeader(http.StatusOK)
+
+	if err := json.NewEncoder(w).Encode(usuarios); err != nil {
+		w.Write([]byte("Erro ao converte os usuários para json"))
+
+		return
+	}
+}
+
+// BuscarUsuário traz um usuário específico salvo no banco de dados
+func BuscarUsuario (w http.ResponseWriter, r *http.Response) {
+
+}
